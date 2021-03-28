@@ -10,7 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: release message
-        run: git tag -n999 "${GITHUB_REF#refs/tags/}" > ${{ github.workflow }}-CHANGELOG.txt
+        run: |
+          echo "${GITHUB_REF#refs/tags/}"
+          git tag -n999 "${GITHUB_REF#refs/tags/}"
+          git tag -n999 "${GITHUB_REF#refs/tags/}" > ${{ github.workflow }}-CHANGELOG.txt
       - name: release
         uses: softprops/action-gh-release@v1
         with:
