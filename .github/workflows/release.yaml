@@ -8,7 +8,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: release message
         run: |
           echo "${GITHUB_REF#refs/tags/}"
