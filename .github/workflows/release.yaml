@@ -13,4 +13,13 @@ jobs:
         id: release_message
         run: |
           RELEASE_MESSAGE=$(git tag -n999 "${GITHUB_REF#refs/tags/}")
-          ech }}
+          echo "$RELEASE_MESSAGE"
+          echo "RELEASE_MESSAGE<<EOF" >> $GITHUB_ENV
+          echo "$RELEASE_MESSAGE" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: create a release
+        uses: elgohr/Github-Release-Action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          args: ${{ env.RELEASE_MESSAGE }}
