@@ -1,0 +1,16 @@
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+name: release
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: get release message
+        id: release_message
+        run: |
+          RELEASE_MESSAGE=$(git tag -n999 "${GITHUB_REF#refs/tags/}")
+          ech }}
