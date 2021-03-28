@@ -12,7 +12,7 @@ jobs:
       - name: release message
         run: |
           echo "${GITHUB_REF#refs/tags/}"
-          git tag -n999 "${GITHUB_REF#refs/tags/}"
+          git tag -n999
           git tag -n999 "${GITHUB_REF#refs/tags/}" > ${{ github.workflow }}-CHANGELOG.txt
       - name: release
         uses: softprops/action-gh-release@v1
