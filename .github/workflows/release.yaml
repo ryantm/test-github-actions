@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "${GITHUB_REF#refs/tags/}"
           git tag -n999
-          git fetch --tags
+          git fetch -f --tags
           git tag -n999
           echo "hi" > ${{ github.workflow }}-CHANGELOG.txt
           git tag -n999 "${GITHUB_REF#refs/tags/}" >> ${{ github.workflow }}-CHANGELOG.txt
